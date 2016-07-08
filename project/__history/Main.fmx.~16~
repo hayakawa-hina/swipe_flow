@@ -1,0 +1,148 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderStyle = Single
+  Caption = 'SwipeFlow'
+  ClientHeight = 620
+  ClientWidth = 1039
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Timer1: TTimer
+    Interval = 10
+    OnTimer = Timer1Timer
+    Left = 20
+    Top = 20
+  end
+  object Force1: TCheckBox
+    AutoTranslate = False
+    Position.X = 822.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 203.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Mouse Gravitation 1'
+    OnChange = Force1Change
+  end
+  object MG1range: TTrackBar
+    Orientation = Horizontal
+    Position.X = 824.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+  end
+  object Force2: TCheckBox
+    Position.X = 822.000000000000000000
+    Position.Y = 192.000000000000000000
+    Size.Width = 203.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Mouse Gravitation 2'
+    OnChange = Force2Change
+  end
+  object MG1curve: TTrackBar
+    Max = 200.000000000000000000
+    Orientation = Horizontal
+    Position.X = 824.000000000000000000
+    Position.Y = 136.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Position.X = 10.000000000000000000
+    Position.Y = 18.000000000000000000
+    Size.Width = 800.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    OnMouseDown = Image1MouseDown
+    OnMouseMove = Image1MouseMove
+    OnMouseUp = Image1MouseUp
+  end
+  object Label1: TLabel
+    Position.X = 816.000000000000000000
+    Position.Y = 384.000000000000000000
+    Size.Width = 257.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = '  MousePosi_prev'
+  end
+  object Label3: TLabel
+    Position.X = 824.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Impact range'
+  end
+  object Label4: TLabel
+    Position.X = 824.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Function parameter'
+  end
+  object Label5: TLabel
+    Position.X = 824.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Impact range'
+  end
+  object MG2range: TTrackBar
+    Max = 10.000000000000000000
+    Orientation = Horizontal
+    Position.X = 824.000000000000000000
+    Position.Y = 248.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+  end
+  object MG2power: TTrackBar
+    Max = 10.000000000000000000
+    Orientation = Horizontal
+    Position.X = 824.000000000000000000
+    Position.Y = 296.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+  end
+  object Label6: TLabel
+    Position.X = 824.000000000000000000
+    Position.Y = 272.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Function parameter'
+  end
+  object Force3: TCheckBox
+    Position.X = 824.000000000000000000
+    Position.Y = 352.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 13
+    Text = 'Force3'
+    OnChange = Force3Change
+  end
+  object Label2: TLabel
+    Position.X = 824.000000000000000000
+    Position.Y = 424.000000000000000000
+    Text = 'Label2'
+  end
+end

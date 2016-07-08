@@ -1,0 +1,135 @@
+unit Main;
+
+interface //#################################################################### Å°
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  Core, FMX.Controls.Presentation, FMX.StdCtrls, LUX, LUX.D2, FMX.ListBox;
+
+type
+   TMouse = record
+     public
+       Drag      :Boolean;
+       prevP        :TDouble2D;
+       nowP         :TDouble2D;
+     end;
+
+  TForm3 = class(TForm)
+    Image1: TImage;
+    Timer1: TTimer;
+    Label1: TLabel;
+    Label2: TLabel;
+    ComboBox1: TComboBox;
+    ListBoxItem1: TListBoxItem;
+    ListBoxItem2: TListBoxItem;
+    ListBoxItem3: TListBoxItem;
+    procedure FormCreate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Image1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure Image1MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Single);
+    procedure ListBoxItem1Click(Sender: TObject);
+  private
+    { private êÈåæ }
+    MouseType :Integer;
+  public
+    { public êÈåæ }
+    _FluidSPH :TFluidSPH;
+    M :TMouse;
+  end;
+
+var
+  Form3: TForm3;
+
+implementation //############################################################### Å°
+
+{$R *.fmx}
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& private
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& public
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+     Image1.AutoCapture := True;
+     Image1.Bitmap.SetSize( 800, 600 );
+
+     M.Drag := false;
+     MouseType := 0;
+
+     _FluidSPH := TFluidSPH.Create;
+end;
+
+
+
+procedure TForm3.Image1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+     M.prevP.X := X;
+     M.prevP.Y := Y;
+     M.nowP.X := X;
+     M.nowP.Y := Y;
+     M.Drag := true;
+end;
+
+
+
+procedure TForm3.Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Single);
+begin
+  if M.Drag = true then
+    begin
+     M.nowP.X := X;
+     M.nowP.Y := Y;
+    end;
+end;
+
+procedure TForm3.Image1MouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+      M.Drag := false;
+end;
+
+
+
+procedure TForm3.ListBoxItem1Click(Sender: TObject);
+begin
+      MouseType := 1;
+end;
+
+procedure TForm3.Timer1Timer(Sender: TObject);
+var
+  Flag :Double;
+begin
+      Flag := 1.0;
+     _FluidSPH.RegistParticles;
+
+     //SPH
+     _FluidSPH.CalcDens( 30 );
+     _FluidSPH.CalcPres( 30 );
+     _FluidSPH.CalcVisc( 30 );
+     label1.Text := 'M.nowP = ( ' + FloatToStr(M.nowP.X) + ', ' + FloatToStr(M.nowP.Y) + ')';
+     label2.Text := 'MouseType ' + IntToStr(MouseType);
+     Flag := _FluidSPH.CalcMouse(M.nowP, M.Drag, 30);
+     //_FluidSPH.CalcForc2( M.prevP, M.nowP, M.Drag);
+     //M.Drag := false;
+     _FluidSPH.CalcForc;
+
+
+     //PBF
+     //_FluidSPH.PBCalcEXT( 30 );
+     //_FluidSPH.RegistParticles;
+
+
+     _FluidSPH.Draw( Image1.Bitmap.Canvas );
+end;
+
+end. //######################################################################### Å°

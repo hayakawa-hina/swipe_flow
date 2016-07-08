@@ -1,0 +1,67 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderStyle = Single
+  Caption = 'SwipeFlow'
+  ClientHeight = 620
+  ClientWidth = 952
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Position.X = 10.000000000000000000
+    Position.Y = 18.000000000000000000
+    Size.Width = 800.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    OnMouseDown = Image1MouseDown
+    OnMouseMove = Image1MouseMove
+    OnMouseUp = Image1MouseUp
+  end
+  object Timer1: TTimer
+    Interval = 10
+    OnTimer = Timer1Timer
+    Left = 20
+    Top = 20
+  end
+  object Label1: TLabel
+    Position.X = 256.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 257.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = '  MousePosi_prev'
+  end
+  object Label2: TLabel
+    Position.X = 256.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 257.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = '  MousePosi_now'
+  end
+  object ComboBox1: TComboBox
+    Position.X = 832.000000000000000000
+    Position.Y = 32.000000000000000000
+    TabOrder = 1
+    object ListBoxItem3: TListBoxItem
+      TabOrder = 2
+      Text = 'ListBoxItem3'
+    end
+    object ListBoxItem1: TListBoxItem
+      StyleName = '1'
+      TabOrder = 0
+      Text = 'ListBoxItem1'
+    end
+    object ListBoxItem2: TListBoxItem
+      TabOrder = 1
+      Text = 'ListBoxItem2'
+    end
+  end
+end
